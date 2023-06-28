@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import api from "./api";
+import React, { useState } from "react";
+import Users from "./components/users";
+import SearchStatus from "./components/searchStatus";
 
-function App() {
+const App = () => {
+  const initialUsers = api.users.fetchAll();
+  const [users, setUsers] = useState(initialUsers);
+
+  const delUser = (id) => {
+    setUsers(users.filter((user) => user._id !== id));
+  };
+
+  const changeStatus = (id) => {
+    setUsers(
+      users.map((user) =>
+        user._id === id ? { ...user, bookmark: !user.bookmark } : user
+      )
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <SearchStatus quantity={users.length} />
+      <Users delUser={delUser} users={users} changeStatus={changeStatus} />
+    </>
   );
-}
+};
 
 export default App;
