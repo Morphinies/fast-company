@@ -7,12 +7,9 @@ const Pagination = ({ onPageChange, itemsCount, pageSize, curPage }) => {
     for (let i = 1; i <= pageCount; i++) {
         pageArr.push(i);
     }
-    if (curPage > pageArr.length && curPage > 1) {
-        onPageChange(curPage - 1);
-    }
     if (pageArr.length === 1) return null;
     return (
-        <nav>
+        <nav className="d-flex justify-content-center">
             <ul className="pagination">
                 {pageArr.map((pageItem) => {
                     return (

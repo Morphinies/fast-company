@@ -1,11 +1,13 @@
 import api from "./api";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Users from "./components/users";
-import SearchStatus from "./components/searchStatus";
 
 const App = () => {
-    const initialUsers = api.users.fetchAll();
-    const [users, setUsers] = useState(initialUsers);
+    const [users, setUsers] = useState();
+
+    useEffect(() => {
+        api.users.default.fetchAll().then((data) => setUsers(data));
+    }, []);
 
     const delUser = (id) => {
         setUsers(users.filter((user) => user._id !== id));
@@ -21,12 +23,13 @@ const App = () => {
 
     return (
         <>
-            <SearchStatus quantity={users.length} />
-            <Users
-                delUser={delUser}
-                users={users}
-                changeStatus={changeStatus}
-            />
+            {users && (
+                <Users
+                    delUser={delUser}
+                    users={users}
+                    changeStatus={changeStatus}
+                />
+            )}
         </>
     );
 };

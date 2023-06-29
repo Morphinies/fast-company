@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const SearchStatus = ({ quantity }) => {
     return (
@@ -6,6 +7,10 @@ const SearchStatus = ({ quantity }) => {
             {quantity + " человек тусанут с тобой сегодня"}
         </h1>
     );
+};
+
+SearchStatus.propTypes = {
+    quantity: PropTypes.number.isRequired
 };
 
 export default SearchStatus;
