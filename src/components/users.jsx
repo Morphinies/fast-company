@@ -47,14 +47,6 @@ const Users = ({ users, ...rest }) => {
         setCurPage(1);
     };
 
-    const handleSort = (item) => {
-        if (item === sortBy.iter && sortBy.order === "asc") {
-            return setSortBy({ iter: item, order: "desc" });
-        }
-        setSortBy({ iter: item, order: "asc" });
-        return null;
-    };
-
     return (
         <>
             <SearchStatus quantity={count} />
@@ -72,7 +64,8 @@ const Users = ({ users, ...rest }) => {
                     <div className="d-flex flex-column">
                         <UsersTable
                             users={userCrop}
-                            onSort={handleSort}
+                            onSort={setSortBy}
+                            selectedSort={sortBy}
                             {...rest}
                         />
 

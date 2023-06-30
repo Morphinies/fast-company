@@ -22,17 +22,7 @@ const User = ({
             <td>{profession.name}</td>
             <td>{completedMeetings}</td>
             <td>{rate}</td>
-            <td>
-                <button onClick={() => changeStatus(_id)} className="btn">
-                    <i
-                        className={
-                            bookmark
-                                ? "bi bi-bookmark-heart-fill h4"
-                                : "bi bi-bookmark-heart h4"
-                        }
-                    ></i>
-                </button>
-            </td>
+            <td></td>
             <td>
                 <button onClick={() => delUser(_id)} className="btn btn-danger">
                     delete
